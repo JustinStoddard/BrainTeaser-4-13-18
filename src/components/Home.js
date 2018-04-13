@@ -17,22 +17,20 @@ class Home extends Component {
   state = { posts: [] }
 
   componentDidMount() {
-    axios.get('https://api.got.show/api/characters/byId/:id')
-      .then( res => this.setState({ cities: res.data }) )
+    axios.get('https://api.got.show/api/characters')
+      .then( res => this.setState({ posts: res.data }) )
+    
   }
 
   render() {
     const { posts } = this.state;
     return (
       <div>
-        { posts.map( post => {
+        { posts.map( (post,i) => (
               <Segment>
                 {post.name}
-                <Segment>
-                  {post.photo}
-                </Segment>
               </Segment>
-            }
+            )
           )
         }
       </div>
